@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.resolvers = void 0;
 // Finish the resolvers
 const product_model_1 = __importDefault(require("../models/product.model"));
+const customer_model_1 = __importDefault(require("../models/customer.model"));
 exports.resolvers = {
     Query: {
         products: () => { },
@@ -34,6 +35,7 @@ exports.resolvers = {
         customer: () => { }
     },
     Mutation: {
+        //PRODUCT
         //add product
         addProduct: (_1, _a) => __awaiter(void 0, [_1, _a], void 0, function* (_, { productName, productPrice }) {
             return yield product_model_1.default.create({ productName, productPrice });
@@ -52,8 +54,23 @@ exports.resolvers = {
             }
         }),
         //remove product
-        removeProduct: () => { },
-        addCustomer: () => { },
+        removeProduct: (_1, _a) => __awaiter(void 0, [_1, _a], void 0, function* (_, { id }) {
+            try {
+                const deleteProduct = yield product_model_1.default.findByIdAndDelete(id);
+                if (!deleteProduct)
+                    throw new Error("Product not found");
+                return deleteProduct;
+            }
+            catch (error) {
+                console.error("Error deleting product:", error);
+                return null;
+            }
+        }),
+        //CUSTOMER
+        //add customer
+        addCustomer: (_1, _a) => __awaiter(void 0, [_1, _a], void 0, function* (_, { firstName, lastName, email }) {
+            return yield customer_model_1.default.create({ firstName, lastName, email });
+        }),
         editCustomer: () => { },
         removeCustomer: () => { },
         addOrder: () => { },

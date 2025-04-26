@@ -18,6 +18,7 @@ const getCustomers = () => __awaiter(void 0, void 0, void 0, function* () { retu
 exports.getCustomers = getCustomers;
 const getCustomerById = (id) => __awaiter(void 0, void 0, void 0, function* () { return yield customer_model_1.default.findById(id); });
 exports.getCustomerById = getCustomerById;
+//add customer
 const createCustomer = (data) => __awaiter(void 0, void 0, void 0, function* () { return yield customer_model_1.default.create(data); });
 exports.createCustomer = createCustomer;
 const updateCustomer = (id, data) => __awaiter(void 0, void 0, void 0, function* () { return yield customer_model_1.default.findByIdAndUpdate(id, data, { new: true }); });
